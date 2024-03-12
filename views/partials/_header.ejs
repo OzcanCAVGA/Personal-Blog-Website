@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uğur DUMAN</title>
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/templatemo-xtra-blog.css" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/dt11q8qxm3nvzk8hfx6ywabr31cl000tlkub9ndi7rbvamz3/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate  mentions tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            image_title: true,
+            automatic_uploads: true,
+            file_picker_types: 'image',
+            file_picker_callback: (cb, value, meta) => {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+
+                input.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+
+                    const reader = new FileReader();
+                    reader.addEventListener('load', () => {
+                        /*
+                          Note: Now we need to register the blob in TinyMCEs image blob
+                          registry. In the next release this part hopefully won't be
+                          necessary, as we are looking to handle it internally.
+                        */
+                        const id = 'blobid' + (new Date()).getTime();
+                        const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        const base64 = reader.result.split(',')[1];
+                        const blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        /* call the callback and populate the Title field with the file name */
+                        cb(blobInfo.blobUri(), { title: file.name });
+                    });
+                    reader.readAsDataURL(file);
+                });
+
+                input.click();
+            },
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+        });
+    </script>
+</head>
+
+<body>
+    <header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="tm-site-header">
+                <div class="mb-3 mx-auto tm-site-logo">
+                    <div class="foto"></div>
+                </div>
+                <h1 class="text-center">UĞUR DUMAN</h1>
+                <% if (userIN) { %>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <a href="/author/logout" class="btn btn-danger align-items">Çıkış Yap</a>
+                    </div>
+                    <% } %>
+            </div>
+            <nav class="tm-nav" id="tm-nav">
+                <ul>
+                    <li class="tm-nav-item <%= page_name ===" index" && 'active' %>"><a href="/" class="tm-nav-link">
+                            <i class="fas fa-user"></i>
+                            Hakkımda
+                        </a></li>
+                    <li class="tm-nav-item <%= page_name ===" posts" && 'active' %>"><a href="/columns"
+                            class="tm-nav-link">
+                            <i class="fas fa-pen"></i>
+                            Köşe Yazılarım
+                        </a></li>
+                    <li class="<%= page_name ===" belgesel" && 'active' %> tm-nav-item"><a href="contact"
+                            class="tm-nav-link">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            Belgeseller
+                        </a></li>
+                    <li class="<%= page_name ===" contact" && 'active' %> tm-nav-item"><a href="contact"
+                            class="tm-nav-link">
+                            <i class="far fa-comments"></i>
+                            İletişim
+                        </a></li>
+                </ul>
+            </nav>
+            <div class="tm-mb-65">
+
+                <a href="https://twitter.com/uugurduman" class="tm-social-link">
+                    <i class="fab fa-twitter tm-social-icon"></i>
+                </a>
+                <a href="https://instagram.com/uugurduman" class="tm-social-link">
+                    <i class="fab fa-instagram tm-social-icon"></i>
+                </a>
+                <a href="https://youtube.com/@ugurdumaniletisim" class="tm-social-link" style="color: black;">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+
+        </div>
+    </header>

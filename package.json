@@ -1,0 +1,29 @@
+{
+  "name": "ugurduman",
+  "version": "1.0.0",
+  "description": "personal blog page",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+    },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Ozcan Cavga",
+  "license": "ISC",
+  "dependencies": {
+    "@ckeditor/ckeditor5-upload": "^41.1.0",
+    "bcrypt": "^5.1.1",
+    "connect-mongo": "^5.1.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.18.0",
+    "mongo-store": "^0.0.2",
+    "mongoose": "^8.2.0",
+    "slugify": "^1.6.6",
+    "tinymce": "^6.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

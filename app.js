@@ -9,11 +9,11 @@ const authorRoutes = require('./routes/authorRoutes');
 
 
 const app = express();
-
+require('dotenv').config();
 //Connect DB
-mongoose.connect('mongodb://127.0.0.1:27017/Columns')
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
-        console.log("DB Baglanildi!")
+        console.log(`DB Baglanildi!`)
     })
     .catch((err) => {
         console.log("Veritabani hatasi:", err)
@@ -31,9 +31,9 @@ app.use(session({
     secret: 'my_keyboard_cat',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/Columns' })
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
 }))
-app.use('*', (req, res, next)=>{
+app.use('*', (req, res, next) => {
     userIN = req.session.userID;
     next()
 })
@@ -44,7 +44,8 @@ app.use('/columns', columnRoutes)
 app.use('/author', authorRoutes)
 
 
-const port = 3232
+const port = process.env.PORT || 3232
+
 app.listen(port, () => {
     console.log(`app started on port ${port}`)
 })

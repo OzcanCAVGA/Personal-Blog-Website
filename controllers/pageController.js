@@ -45,6 +45,7 @@ exports.createColumn = async (req, res) => {
 
         const column = await Column.create({
             title: req.body.title,
+            miniContent: req.body.miniContent,
             content: req.body.content,
             author: userID
         })

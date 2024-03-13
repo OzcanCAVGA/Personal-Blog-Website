@@ -7,14 +7,18 @@ const ColumnSchema = new Schema({
         type: String,
         required: true,
     },
+    miniContent: {
+        type: String,
+        required: true
+    },
     content: {
         type: String,
         required: true,
     },
-  author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Author"
-  },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Author"
+    },
     date: {
         type: Date,
         default: Date.now,

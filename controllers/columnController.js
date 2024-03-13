@@ -8,9 +8,9 @@ exports.getEditColumnPage = async (req, res) => {
         if (!column) {
             return res.status(404).send('The column with the given ID was not found.');
         }
-        res.render('edit', { 
+        res.render('edit', {
             column,
-            page_name:'ozcan'
+            page_name: 'ozcan'
         });
     } catch (err) {
         res.status(500).send(err);
@@ -58,7 +58,7 @@ exports.deleteColumnPage = async (req, res) => {
 
 
 exports.updateColumnPage = async (req, res) => {
-    // const column = await Column.findById(req.params.id)
+    const column = await Column.findById(req.params.id)
     // if (!column) {
     //     return res.status(404).send('The column with the given ID was not found.');
     // }
@@ -71,27 +71,27 @@ exports.updateColumnPage = async (req, res) => {
     // res.redirect(`/columns/${req.params.id}`)
 
 
-// Güncellenecek column belgesinin ID'si ve güncellenecek verileri içeren bir obje alınır (örneğin req.body üzerinden)
-const columnID = req.params.id;
-const updatedData = {
-    title: req.body.title,
-    miniContent: req.body.miniContent,
-    content: req.body.content
+    // Güncellenecek column belgesinin ID'si ve güncellenecek verileri içeren bir obje alınır (örneğin req.body üzerinden)
+    const columnID = req.params.id;
+    const updatedData = {
+        title: req.body.title,
+        miniContent: req.body.miniContent,
+        content: req.body.content
 
-};
+    };
 
 
-Column.findByIdAndUpdate(columnID, updatedData, { new: true })
-    .then(updatedColumn => {
-        if (!updatedColumn) {
-            return res.status(404).send('Güncellenen belge bulunamadı.');
-        }
-        res.status(200).redirect('/')
-    })
-    .catch(error => {
-        console.error('Belge güncellenirken bir hata oluştu:', error);
-        res.status(500).send('Belge güncellenirken bir hata oluştu.');
-    });
+    Column.findByIdAndUpdate(columnID, updatedData, { new: true })
+        .then(updatedColumn => {
+            if (!updatedColumn) {
+                return res.status(404).send('Güncellenen belge bulunamadı.');
+            }
+            res.status(200).redirect('/')
+        })
+        .catch(error => {
+            console.error('Belge güncellenirken bir hata oluştu:', error);
+            res.status(500).send('Belge güncellenirken bir hata oluştu.');
+        });
 
 }
 

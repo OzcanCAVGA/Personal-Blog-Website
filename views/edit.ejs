@@ -16,12 +16,12 @@
                                 <label for="content">miniContent</label>
                                 <br>
                                 <textarea class="form-control" id="miniContent" name="miniContent" rows="3" cols="93"
-                                    required></textarea>
+                                    required><%= column.miniContent %></textarea>
 
                             </div>
                             <div class="form-group">
                                 <label for="content">Content</label>
-                                <textarea class="form-control" id="tiny" name="content" rows="3" required></textarea>
+                                <textarea class="form-control" id="tiny" name="content" rows="3" required><%= column.content %></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Güncelle</button>
                         </form>

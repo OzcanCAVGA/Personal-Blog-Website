@@ -3,7 +3,8 @@ const Author = require('../models/Author')
 
 exports.getIndexPage = (req, res) => {
     res.status(200).render('index', {
-        page_name: 'index'
+        page_name: 'index',
+        
     })
 }
 

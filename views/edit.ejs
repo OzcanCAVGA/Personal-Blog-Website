@@ -1,0 +1,40 @@
+<!-- header -->
+<%- include('partials/_header') %>
+    <div class="container-fluid">
+        <main class="tm-main">
+            <!-- Edit form -->
+            <div class="row tm-row">
+                <div class="col-12">
+                    <% if(userIN){ %>
+                        <form action="/columns/edit/<%= column._id %>?_method=POST" method="POST" class="tm-mb-80">
+                            <div class="form-group">
+                                <label for="title">Başlık</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    value="<%= column.title %>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="content">miniContent</label>
+                                <br>
+                                <textarea class="form-control" id="miniContent" name="miniContent" rows="3" cols="93"
+                                    required></textarea>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <textarea class="form-control" id="tiny" name="content" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Güncelle</button>
+                        </form>
+                        <% } %>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- footer -->
+    <%- include('partials/_footer') %>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/templatemo-script.js"></script>
+        </body>
+
+        </html>

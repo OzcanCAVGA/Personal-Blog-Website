@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session')
+const methodOverride = require('method-override');
 const MongoStore = require('connect-mongo');
 
 const pageRoutes = require('./routes/pageRoutes')
@@ -37,6 +38,7 @@ app.use('*', (req, res, next) => {
     userIN = req.session.userID;
     next()
 })
+app.use(methodOverride('_method'));
 
 //Routes
 app.use('/', pageRoutes)

@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/templatemo-xtra-blog.css" rel="stylesheet">
-    <script src="https://cdn.tiny.cloud/1/dt11q8qxm3nvzk8hfx6ywabr31cl000tlkub9ndi7rbvamz3/tinymce/6/tinymce.min.js"
+    <script src="https://cdn.tiny.cloud/1/dt11q8qxm3nvzk8hfx6ywabr31cl000tlkub9ndi7rbvamz3/tinymce/5/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script>
         tinymce.init({
@@ -72,21 +72,21 @@
             </div>
             <nav class="tm-nav" id="tm-nav">
                 <ul>
-                    <li class="tm-nav-item <%= page_name ===" index" && 'active' %>"><a href="/" class="tm-nav-link">
+                    <li class="tm-nav-item <%= page_name =="index" && 'active' %>"><a href="/" class="tm-nav-link">
                             <i class="fas fa-user"></i>
                             Hakkımda
                         </a></li>
-                    <li class="tm-nav-item <%= page_name ===" posts" && 'active' %>"><a href="/columns"
+                    <li class="tm-nav-item <%= page_name ==="posts" && 'active' %>"><a href="/columns"
                             class="tm-nav-link">
                             <i class="fas fa-pen"></i>
                             Köşe Yazılarım
                         </a></li>
-                    <li class="<%= page_name ===" belgesel" && 'active' %> tm-nav-item"><a href="contact"
+                    <li class="<%= page_name ==="belgesel" && 'active' %> tm-nav-item"><a href="contact"
                             class="tm-nav-link">
                             <i class="fa-solid fa-graduation-cap"></i>
                             Belgeseller
                         </a></li>
-                    <li class="<%= page_name ===" contact" && 'active' %> tm-nav-item"><a href="contact"
+                    <li class="<%= page_name ==="contact" && 'active' %> tm-nav-item"><a href="contact"
                             class="tm-nav-link">
                             <i class="far fa-comments"></i>
                             İletişim
@@ -105,6 +105,5 @@
                     <i class="fab fa-youtube"></i>
                 </a>
             </div>
-
         </div>
     </header>

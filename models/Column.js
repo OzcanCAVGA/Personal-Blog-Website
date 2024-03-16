@@ -23,10 +23,7 @@ const ColumnSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    // images: [{
-    //     type: String,
-    //     required: false
-    // }]
+
 });
 
 const Column = mongoose.model("Column", ColumnSchema);

@@ -16,11 +16,11 @@
                     <% if(userIN){ %>
 
 
+                        <a href="/columns/edit/<%= column._id %>" class="btn btn-success">Düzenle</a>
+
                         <form action="/columns/<%= column._id %>?_method=DELETE" method="POST">
                             <button type="submit" class="btn btn-danger">Sil</button>
                         </form>
-
-                        <a href="/columns/edit/<%= column._id %>" class="btn btn-success">Düzenle</a>
                         <% } %>
                 </div>
             </div>

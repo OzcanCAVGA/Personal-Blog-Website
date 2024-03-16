@@ -16,22 +16,29 @@
             </div>
 
             <div class="row tm-row tm-mb-40">
-                <% if(userIN){ %>
-                    <a href="/about-edit/<%= about[0]._id %>" class="btn btn-success">Düzenle</a> 
-                    
-                    <% } %>
-                    
-                    <div class="col-12">
-                        <div class="mb-4">
-                            <h2 class="pt-2 tm-mb-40 tm-color-primary tm-post-title">
-                                <%= about[0].title %>
-                                    </h2>
-                                    <p>
-                                        <%- about[0].content %>
-                                    </p>
 
-                                </div>
+                <div class="col-12">
+                    <div class="mb-4">
+                        <form action="/about-edit/<%= about[0]._id %>?_method=PUT" method="POST" class="tm-mb-80">
+                            <div class="form-group">
+                                <label for="title">Başlık</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    value="<%= about[0].title %>" required>
                             </div>
+                            <div class="form-group">
+                                <label for="content">miniContent</label>
+                                <br>
+                                <textarea class="form-control" id="tiny" name="content" rows="3" cols="93"
+                                    required><%= about[0].content  %></textarea>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Güncelle</button>
+                        </form>
+
+
+                    </div>
+                </div>
             </div>
 
 

@@ -10,7 +10,7 @@ exports.getEditColumnPage = async (req, res) => {
         }
         res.render('edit', {
             column,
-            page_name: 'ozcan'
+            page_name: 'post'
         });
     } catch (err) {
         res.status(500).send(err);
@@ -59,19 +59,7 @@ exports.deleteColumnPage = async (req, res) => {
 
 exports.updateColumnPage = async (req, res) => {
     const column = await Column.findById(req.params.id)
-    // if (!column) {
-    //     return res.status(404).send('The column with the given ID was not found.');
-    // }
 
-    // column.title = req.body.title
-    // column.miniContent = req.body.miniContent
-    // column.content = req.body.content
-    // await column.save()
-
-    // res.redirect(`/columns/${req.params.id}`)
-
-
-    // Güncellenecek column belgesinin ID'si ve güncellenecek verileri içeren bir obje alınır (örneğin req.body üzerinden)
     const columnID = req.params.id;
     const updatedData = {
         title: req.body.title,

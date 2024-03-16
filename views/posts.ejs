@@ -31,14 +31,14 @@
                             <%- columns[i].miniContent.substring(0,200) %>
                         </p>
                         <div class="d-flex justify-content-between tm-pt-45">
+
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
                             <span class="tm-color-primary">
                                 <%= new Date(columns[i].date).toLocaleDateString('tr-TR', { day: 'numeric' ,
                                     month: 'long' , year: 'numeric' }) %>
                             </span>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between">
-                            <span>36 comments</span>
                             <span>
                                 <% if (columns[i].author) { %>
                                     <%= columns[i].author.name %>
@@ -52,26 +52,33 @@
                     <% }; %>
             </div>
             <div class="row tm-row tm-mt-100 tm-mb-75">
-                <div class="tm-prev-next-wrapper">
-                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
-                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
-                </div>
-                <div class="tm-paging-wrapper">
+
+                <div class="">
                     <span class="d-inline-block mr-3">Page</span>
                     <nav class="tm-paging-nav d-inline-block">
                         <ul>
-                            <li class="tm-paging-item active">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">1</a>
-                            </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">2</a>
-                            </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">3</a>
-                            </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">4</a>
-                            </li>
+
+                            <% for(i=1; i<=pages; i++){ %>
+                                <% if(i==currentPage) { %>
+                                    <li class="tm-paging-item active">
+                                        <a href="/columns/?page=<%=i%>" class="mb-2 tm-btn tm-paging-link">
+                                            <%= i %>
+                                        </a>
+                                    </li>
+                                    <% } else if( i < pages ){%>
+                                        <li class="tm-paging-item">
+                                            <a href="/columns/?page=<%=i%>" class="mb-2 tm-btn tm-paging-link">
+                                                <%= i %>
+                                            </a>
+                                        </li>
+                                        <% } else{ %>
+                                            <li class="tm-paging-item">
+                                                <a href="/columns/?page=<%=i%>" class="mb-2 tm-btn tm-paging-link">
+                                                    <%=i%>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% } %>
                         </ul>
                     </nav>
                 </div>

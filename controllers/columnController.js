@@ -18,26 +18,35 @@ exports.getEditColumnPage = async (req, res) => {
 };
 
 exports.getColumnsPage = async (req, res) => {
-    const query = req.query.search
+    const query = req.query.search;
+    const page = parseInt(req.query.page) || 1;
+    const columnsPerPage = 4;
 
-    let filter = {}
-
+    let filter = {};
     if (query) {
         filter = { name: { $regex: '.*' + query + '.*', $options: 'i' } };
     }
 
-    if (!query) {
-        filter.name = ""
+    try {
+        const totalColumns = await Column.countDocuments(filter);
+        const columns = await Column.find(filter)
+            .sort('-date')
+            .skip((page - 1) * columnsPerPage)
+            .limit(columnsPerPage)
+            .populate('author');
+
+        const pages = Math.ceil(totalColumns / columnsPerPage);
+
+        res.status(200).render('posts', {
+            page_name: 'posts',
+            columns,
+            pages,
+            currentPage: page
+        });
+    } catch (err) {
+        res.status(500).send(err);
     }
-
-    const columns = await Column.find().sort('-date').populate('author')
-    res.status(200).render('posts', {
-        page_name: 'posts',
-        columns,
-
-    })
-}
-
+};
 exports.getSingleColumnPage = async (req, res) => {
     const columnID = req.params.id
 
@@ -86,21 +95,22 @@ exports.updateColumnPage = async (req, res) => {
 
 exports.getAllColumns = async (req, res) => {
     try {
-        const query = req.query.search
+        const page = req.query.page || 1;
+        const columnsPerPage = 4;
+        const totalColumns = await Column.find().countDocuments()
 
-        let filter = {}
+        const column = await Column.find()
+            .sort('-date')
+            .skip((page - 1) * columnsPerPage)
+            .limit(columnsPerPage)
 
-        filter = { title: query }
-        if (!query) {
-            filter.name = ""
-        }
-
-        const column = await Column.find({
-            name: { $regex: '.*' + filter.name * '.*', $option: 'i' }
-        }).sort('-date')
-
-        res.status(200).render('')
+        res.status(200).render('posts', {
+            columns: columns,
+            current: page,
+            pages: Math.ceil(totalColumns / columnsPerPage)
+        })
     } catch (error) {
+        res.status(500).send(error);
 
     }
 }
